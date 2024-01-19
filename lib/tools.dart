@@ -25,4 +25,27 @@ class Tools {
       ),
     );
   }
+
+  static Container roundedContainer({
+    required Size screenSize,
+    required Widget child,
+  }) {
+    return Container(
+      height: screenSize.height * 0.12,
+      width: screenSize.width * 0.9,
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 250, 250, 250),
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.grey,
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: Offset(0, 1),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
 }
