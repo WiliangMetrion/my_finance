@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance/Types/t_category.dart';
+import 'package:my_finance/Types/t_types.dart';
 
 import '../tools.dart';
 
@@ -27,7 +27,7 @@ class _DashboardState extends State<Dashboard> {
             const Spacer(),
             IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.notifications_active,
                 size: 36,
               ),
               onPressed: () {},
@@ -37,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
         body: SingleChildScrollView(
           child: Container(
             width: screen.width,
-            height: screen.height * 2,
+            height: screen.height * 1.2,
             decoration: const BoxDecoration(
               color: Color(0xFFCADDF5),
             ),
@@ -81,35 +81,32 @@ class _DashboardState extends State<Dashboard> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                          Column(
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.monetization_on_rounded,
                                 ),
+                                iconSize: 36,
                               ),
-                              maximumSize:
-                                  MaterialStateProperty.all(const Size(64, 64)),
-                              padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(4.0),
+                              Tools.descriptiveText(text: 'Budget'),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.chrome_reader_mode,
+                                ),
+                                iconSize: 36,
                               ),
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  'Images/budget.png',
-                                  scale: 15,
-                                  fit: BoxFit.fitWidth,
-                                ),
-                                Tools.descriptiveText(
-                                  text: 'Budget',
-                                  fontSize: 10,
-                                ),
-                              ],
-                            ),
-                          )
+                              Tools.descriptiveText(text: 'History'),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -245,48 +242,50 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ],
                     ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                            width: screen.width * 0.3,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: screen.width * 0.35,
                             child: ListView.builder(
-                              itemCount: Types.category.length,
+                              itemCount: Types.payCategory.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Container(
+                                        margin: const EdgeInsets.all(2.0),
                                         width: 25,
                                         height: 25,
-                                        color: Colors.red,
+                                        color: Types.payCategory[index].color,
                                       ),
                                       Text(
-                                        "Pengeluaran",
+                                        Types.payCategory[index].category,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ],
                                   ),
                                 );
                               },
-                            )),
-                        SizedBox(
-                          width: screen.width * 0.6,
-                          child: PieChart(
-                            PieChartData(sections: [
-                              PieChartSectionData(
-                                value: 20,
-                                color: Colors.lightBlueAccent,
-                              ),
-                              PieChartSectionData(
-                                value: 30,
-                                color: Colors.grey,
-                              )
-                            ]),
+                            ),
                           ),
-                        ),
-                      ],
+                          Spacer(),
+                          SizedBox(
+                            width: screen.width * 0.55,
+                            child: PieChart(
+                              PieChartData(
+                                  sections: Types.payCategory
+                                      .map(
+                                        (e) => PieChartSectionData(
+                                            value: 20, color: e.color),
+                                      )
+                                      .toList()),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

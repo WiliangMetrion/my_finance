@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance/Types/t_category.dart';
+import 'package:my_finance/Types/t_types.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
