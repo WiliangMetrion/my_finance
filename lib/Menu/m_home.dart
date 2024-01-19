@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_finance/Menu/m_dashboard.dart';
 import 'package:my_finance/Menu/m_history.dart';
 import 'package:my_finance/Menu/m_transaction.dart';
+import 'package:my_finance/Menu/m_user.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -23,6 +24,7 @@ class _HomeState extends State<Home> {
     Dashboard(),
     History(),
     Transaction(),
+    UserSetting(),
   ];
 
   @override
@@ -31,6 +33,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: menus.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -43,6 +47,10 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.checklist_outlined),
             label: 'Transaction',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'User',
           ),
         ],
         currentIndex: _selectedIndex,

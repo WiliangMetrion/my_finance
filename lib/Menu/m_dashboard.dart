@@ -1,4 +1,6 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:my_finance/Types/t_category.dart';
 
 import '../tools.dart';
 
@@ -227,23 +229,67 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 Positioned(
-                    top: screen.height * 0.625,
-                    child: Container(
-                      height: screen.height * 0.3,
-                      width: screen.width,
-                      padding: const EdgeInsets.only(left: 8.0),
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 250, 250, 250),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                            offset: Offset(0, 1),
+                  top: screen.height * 0.625,
+                  child: Container(
+                    height: screen.height * 0.5,
+                    width: screen.width,
+                    padding: const EdgeInsets.only(left: 8.0),
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 250, 250, 250),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                            width: screen.width * 0.3,
+                            child: ListView.builder(
+                              itemCount: Types.category.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        width: 25,
+                                        height: 25,
+                                        color: Colors.red,
+                                      ),
+                                      Text(
+                                        "Pengeluaran",
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            )),
+                        SizedBox(
+                          width: screen.width * 0.6,
+                          child: PieChart(
+                            PieChartData(sections: [
+                              PieChartSectionData(
+                                value: 20,
+                                color: Colors.lightBlueAccent,
+                              ),
+                              PieChartSectionData(
+                                value: 30,
+                                color: Colors.grey,
+                              )
+                            ]),
                           ),
-                        ],
-                      ),
-                    )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

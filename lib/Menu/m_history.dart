@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance/Types/t_category.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -8,13 +9,6 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  List<String> category = [
-    'Food',
-    'Transportation',
-    'Clothing',
-    'Health',
-  ];
-
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
@@ -49,7 +43,7 @@ class _HistoryState extends State<History> {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(children: [
-                          ...category.map(
+                          ...Types.category.map(
                             (e) => Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: FilterChip(
@@ -117,7 +111,7 @@ class _HistoryState extends State<History> {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(children: [
-                          ...category.map(
+                          ...Types.category.map(
                             (e) => Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: FilterChip(

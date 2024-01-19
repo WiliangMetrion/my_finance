@@ -48,4 +48,22 @@ class Tools {
       child: child,
     );
   }
+
+  static Padding customTextField({
+    required TextEditingController controller,
+    required String labelText,
+    int maxLines = 1,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: labelText,
+          border: const OutlineInputBorder(),
+        ),
+        maxLines: maxLines,
+      ),
+    );
+  }
 }
